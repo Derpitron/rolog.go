@@ -10,6 +10,7 @@ import (
 	"github.com/DisgoOrg/disgohook"
 	"github.com/joho/godotenv"
 	"github.com/shirou/gopsutil/v3/process"
+	"github.com/sirupsen/logrus"
 )
 
 func goDotEnvVariable(key string) string {
@@ -19,6 +20,8 @@ func goDotEnvVariable(key string) string {
 	}
 	return os.Getenv(key)
 }
+
+logger := logrus.New()
 
 var (
 	hook, _ = disgohook.NewWebhookClientByToken(nil, nil, goDotEnvVariable("HOOK"))
@@ -46,7 +49,7 @@ func UpdateRobloxPresence() {
 	for roblox == nil {
 		roblox = GetProcessByName("RobloxPlayerBeta.exe")
 
-		if reset == false {
+		if !reset {
 			reset = true
 
 			fmt.Println("reset client activity")
@@ -70,7 +73,7 @@ func UpdateRobloxPresence() {
 }
 
 func main() {
-	for true {
+	for {
 		UpdateRobloxPresence()
 
 		time.Sleep(time.Second * 5)
