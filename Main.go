@@ -2,7 +2,6 @@ package rbxgamelog
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -10,7 +9,6 @@ import (
 	"time"
 
 	"github.com/DisgoOrg/disgohook"
-	"github.com/DisgoOrg/disgohook/api"
 	"github.com/joho/godotenv"
 	"github.com/shirou/gopsutil/process"
 )
@@ -24,7 +22,7 @@ func goDotEnvVariable(key string) string {
 }
 
 var (
-	hook, err = disgohook.NewWebhookByToken(nil, nil, goDotEnvVariable("HOOK"))
+	hook, err = disgohook.NewWebhookClientByToken(nil, nil, goDotEnvVariable("HOOK"))
 	placeId   string
 	reset     = false
 )
@@ -54,10 +52,10 @@ func GetProcessByName(targetProcessName string) *process.Process {
 
 func GetPlaceInfoByPlaceId(placeId string) *MarketPlaceInfo {
 	url := "https://api.roblox.com/marketplace/productinfo?assetId=" + placeId
-	resp, _ := http.Get(url)
-	defer resp.Body.Close()
+	response, _ := http.Get(url)
+	defer response.Body.Close()
 	var info *MarketPlaceInfo
-	json.NewDecoder(resp.Body).Decode(&info)
+	json.NewDecoder(response.Body).Decode(&info)
 	return info
 }
 
@@ -67,13 +65,7 @@ func UpdateRobloxPresence() {
 		roblox = GetProcessByName("RobloxPlayerBeta.exe")
 		if reset == false {
 			reset = true
-			client.Logout()
-			fmt.Println("reset client activity")
 		}
-	}
-	err := client.Login("823294557155754005")
-	if err != nil {
-		fmt.Println(err)
 	}
 
 	reset = false
@@ -82,9 +74,7 @@ func UpdateRobloxPresence() {
 	placeMatch := placePattern.FindStringSubmatch(args)[1]
 	if placeMatch != placeId {
 		placeId = placeMatch
-		_, _ = hook.SendMessage(api.NewWebhookMessageCreateBuilder().
-			SetContent("`Started playing:`\nhttps://www.roblox.com/games/" + placeId + "/-"),
-		)
+		_, _ = hook.SendContent("`Started playing:`\nhttps://www.roblox.com/games/" + placeId + "/-")
 	}
 }
 
