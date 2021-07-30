@@ -69,20 +69,16 @@ func updateRobloxPresence() {
 	if (err != nil) {
 		fmt.Println(err)
 	}
-
 	reset = false
-
 	args, _ := roblox.Cmdline()
 
 	placePattern := regexp.MustCompile(`placeId=(\d+)`)
 	placeMatch := placePattern.FindStringSubmatch(args)[1]
 
-	now := time.Now()
-
 	if (placeMatch != placeId) {
 		placeId = placeMatch
 		place := GetPlaceInfoByPlaceId(placeId)
-		message, err := webhook.SendContent("```Played game:```\nhttps://www.roblox.com/games/" + placeId + "/-")
+		message, err := webhook.SendContent("`Played game:`\nhttps://www.roblox.com/games/" + placeId + "/- `at time:`" + time.Now())
 	}
 }
 
