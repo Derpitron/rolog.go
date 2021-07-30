@@ -1,6 +1,8 @@
 github.com/DisgoOrg/disgohook v1.4.0 h1:T+Wh13gkA9Y3V2G6xfYyZaM4XJPvNMVR0UElsTBDf7c=
 github.com/DisgoOrg/disgohook v1.4.0/go.mod h1:7ri6RyOOTd85mSlvpKPyH8xewzMzq4zl3CSZGoLDkUk=
+github.com/DisgoOrg/log v1.0.3 h1:IjmZQQu/kuBIui22EdXmxzQGYwcPCJEkXa0Fe6W9fJk=
 github.com/DisgoOrg/log v1.0.3/go.mod h1:KFGKhBQr37d6rxZ7p2bmc8BEmDH8DZbtgdlJDSCsE7I=
+github.com/DisgoOrg/restclient v1.2.2 h1:75SGqqN/9lqJ3GQOpPY99f1ihZMzSXDcLNF+biDp+Pk=
 github.com/DisgoOrg/restclient v1.2.2/go.mod h1:PIhyYsT52w5T6m4LT+HTdKqY6NOIqo71Ai0rgaq9ZtM=
 github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d/go.mod h1:3eOhrUMpNV+6aFIbp5/iudMxNCF27Vw2OZgy4xEx0Fg=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
