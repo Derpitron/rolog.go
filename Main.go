@@ -1,4 +1,4 @@
-package rbxexplog
+package main
 
 import (
 	"encoding/json"
