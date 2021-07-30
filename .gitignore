@@ -1,5 +1,4 @@
 .env
 /.env
 *.exe
-src/*.exe
 /bin
