@@ -21,10 +21,10 @@ func goDotEnvVariable(key string) string {
 	return os.Getenv(key)
 }
 
-logger := logrus.New()
+var logger = logrus.New()
 
 var (
-	hook, _ = disgohook.NewWebhookClientByToken(nil, nil, goDotEnvVariable("HOOK"))
+	hook, _ = disgohook.NewWebhookClientByToken(nil, logger, goDotEnvVariable("HOOK"))
 	placeId string
 	reset   = false
 )
