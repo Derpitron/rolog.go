@@ -77,11 +77,6 @@ func updateRobloxPresence() {
 	placePattern := regexp.MustCompile(`placeId=(\d+)`)
 	placeMatch := placePattern.FindStringSubmatch(args)[1]
 
-	// timePattern := regexp.MustCompile(`launchtime=(\d+)`)
-	// timeMatch := timePattern.FindStringSubmatch(args)[1]
-
-	// startTime, _ := strconv.ParseInt(timeMatch, 10, 64)
-
 	now := time.Now()
 
 	if (placeMatch != placeId) {
