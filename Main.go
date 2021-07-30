@@ -1,32 +1,35 @@
 package rbxgamelog
 
 import (
-	"fmt"
-	"github.com/shirou/gopsutil/process"
-	"time"
-	"regexp"
-	"net/http"
 	"encoding/json"
-	"github.com/joho/godotenv"
+	"fmt"
+	"log"
+	"net/http"
+	"os"
+	"regexp"
+	"time"
+
 	"github.com/DisgoOrg/disgohook"
+	"github.com/joho/godotenv"
+	"github.com/shirou/gopsutil/process"
 )
 
 func goDotEnvVariable(key string) string {
 	err := godotenv.Load(".env")
 	if err != nil {
-	  log.Fatalf("Error loading .env file")
+		log.Fatalf("Error loading .env file")
 	}
 	return os.Getenv(key)
 }
 
 var (
-	placeID string
-	reset = false
-	hook, err := disgohook.NewWebhookByToken(nil, nil, goDotEnvVariable("HOOK"))
+	placeID   string
+	reset     = false
+	hook, err = disgohook.NewWebhookByToken(nil, nil, goDotEnvVariable("HOOK"))
 )
 
 type MarketPlaceInfo struct {
-	Name	string	`json:"Name"`
+	Name string `json:"Name"`
 }
 
 func getProcessByName(targetProcessName string) *process.Process {
@@ -34,7 +37,7 @@ func getProcessByName(targetProcessName string) *process.Process {
 
 	for _, proc := range processes {
 		name, _ := proc.Name()
-		if (name == targetProcessName) {
+		if name == targetProcessName {
 			return proc
 		}
 	}
@@ -53,10 +56,10 @@ func GetPlaceInfoByPlaceId(placeID string) *MarketPlaceInfo {
 func updateRobloxPresence() {
 	roblox := GetProcessByName("RobloxPlayerBeta.exe")
 
-	for (roblox == nil) {
+	for roblox == nil {
 		roblox = GetProcessByName("RobloxPlayerBeta.exe")
 
-		if (reset == false) {
+		if reset == false {
 			reset = true
 
 			client.Logout()
@@ -66,7 +69,7 @@ func updateRobloxPresence() {
 
 	err := client.Login("823294557155754005")
 
-	if (err != nil) {
+	if err != nil {
 		fmt.Println(err)
 	}
 	reset = false
@@ -75,7 +78,7 @@ func updateRobloxPresence() {
 	placePattern := regexp.MustCompile(`placeId=(\d+)`)
 	placeMatch := placePattern.FindStringSubmatch(args)[1]
 
-	if (placeMatch != placeId) {
+	if placeMatch != placeId {
 		placeId = placeMatch
 		place := GetPlaceInfoByPlaceId(placeId)
 		message, err := webhook.SendContent("`Played game:`\nhttps://www.roblox.com/games/" + placeId + "/- `at time:`" + time.Now())
@@ -83,7 +86,7 @@ func updateRobloxPresence() {
 }
 
 func main() {
-	for (true) {
+	for true {
 		updateRobloxPresence()
 		time.Sleep(time.Second * goDotEnvVariable("INTERVAL"))
 	}
