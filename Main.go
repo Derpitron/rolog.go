@@ -1,4 +1,4 @@
-package rbxgamelog
+package rbxexplog
 
 import (
 	"encoding/json"
@@ -10,7 +10,7 @@ import (
 
 	"github.com/DisgoOrg/disgohook"
 	"github.com/joho/godotenv"
-	"github.com/shirou/gopsutil/process"
+	"github.com/shirou/gopsutil/v3/process"
 )
 
 func goDotEnvVariable(key string) string {
