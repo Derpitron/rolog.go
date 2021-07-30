@@ -1,9 +1,7 @@
 package main
 
 import (
-	"encoding/json"
 	"log"
-	"net/http"
 	"os"
 	"regexp"
 	"time"
@@ -50,15 +48,6 @@ func GetProcessByName(targetProcessName string) *process.Process {
 	return nil
 }
 
-func GetPlaceInfoByPlaceId(placeId string) *MarketPlaceInfo {
-	url := "https://api.roblox.com/marketplace/productinfo?assetId=" + placeId
-	response, _ := http.Get(url)
-	defer response.Body.Close()
-	var info *MarketPlaceInfo
-	json.NewDecoder(response.Body).Decode(&info)
-	return info
-}
-
 func UpdateRobloxPresence() {
 	roblox := GetProcessByName("RobloxPlayerBeta.exe")
 	for roblox == nil {
@@ -79,8 +68,8 @@ func UpdateRobloxPresence() {
 }
 
 func main() {
-	for true {
+	for {
 		UpdateRobloxPresence()
-		time.Sleep(time.Second * 2)
+		time.Sleep(time.Second * 3)
 	}
 }
