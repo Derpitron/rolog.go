@@ -1,4 +1,4 @@
-package robloxgamelog
+package rbxgamelog
 
 import (
 	"fmt"
@@ -8,10 +8,12 @@ import (
 	"net/http"
 	"encoding/json"
 	"github.com/joho/godotenv"
-	"github.com/nickname32/discordhook"
+	"github.com/DisgoOrg/disgohook"
 )
 
 godotenv.Load()
+
+hook, _ := disgohook.NewWebhookByToken(nil, nil, os.Getenv("HOOK"))
 
 var (
 	placeID string
@@ -80,3 +82,4 @@ func UpdateRobloxPresence() {
 	if (placeMatch != placeId) {
 		placeId = placeMatch
 		place := GetPlaceInfoByPlaceId(placeId)
+		message, err := webhook.SendContent("```Played game:```\nhttps://www.roblox.com/games/" + placeId + "/-")
