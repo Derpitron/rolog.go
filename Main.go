@@ -11,13 +11,18 @@ import (
 	"github.com/DisgoOrg/disgohook"
 )
 
-godotenv.Load()
-
-hook, _ := disgohook.NewWebhookByToken(nil, nil, os.Getenv("HOOK"))
+func goDotEnvVariable(key string) string {
+	err := godotenv.Load(".env")
+	if err != nil {
+	  log.Fatalf("Error loading .env file")
+	}
+	return os.Getenv(key)
+}
 
 var (
 	placeID string
 	reset = false
+	hook, err := disgohook.NewWebhookByToken(nil, nil, goDotEnvVariable("HOOK"))
 )
 
 type MarketPlaceInfo struct {
@@ -45,7 +50,7 @@ func GetPlaceInfoByPlaceId(placeID string) *MarketPlaceInfo {
 	return info
 }
 
-func UpdateRobloxPresence() {
+func updateRobloxPresence() {
 	roblox := GetProcessByName("RobloxPlayerBeta.exe")
 
 	for (roblox == nil) {
@@ -83,3 +88,12 @@ func UpdateRobloxPresence() {
 		placeId = placeMatch
 		place := GetPlaceInfoByPlaceId(placeId)
 		message, err := webhook.SendContent("```Played game:```\nhttps://www.roblox.com/games/" + placeId + "/-")
+	}
+}
+
+func main() {
+	for (true) {
+		updateRobloxPresence()
+		time.Sleep(time.Second * goDotEnvVariable("INTERVAL"))
+	}
+}
