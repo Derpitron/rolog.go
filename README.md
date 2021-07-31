@@ -1,6 +1,9 @@
 # RoLog.go
 Go program for Windows which takes the Roblox experiences you join and posts it's link to a discord Webhook
 
+![image](https://user-images.githubusercontent.com/46134462/127735187-d3c6ae1c-7e6d-44d6-bb55-e77a4ead7d1a.png)
+
+
 # Installation
 1. Install [Golang](https://golang.org/dl/) for your system
 2. Open a terminal, and run 
