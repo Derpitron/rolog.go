@@ -40,3 +40,9 @@ Either way, both will compile a file called `main.exe`.
 - If you want to stop the program, close the console window. If you've compiled the program without the console window and want to stop it, open Task Manager, find the name of your `.exe` file and End Task.
 
 - The program must be running in order to send the link! It must be running on the system in which you're playing the experience, so you cannot host it on a server or service like Heroku!
+
+# Attributions
+
+- [fuzzydragon](https://github.com/fuzzydragon) for a way to get the PlaceID from the running Roblox Process. Go check out their [Roblox Discord Rich Presence](https://github.com/fuzzydragon/Roblox-Game-Presence-For-Discord) Program written in Golang, it works wonderfully!
+
+- [The DisgoOrg team](https://github.com/DisgoOrg) for clearing up my noobish questions with their Disgohook library and helping me out with tidying up the code. They have a lot of cool projects written in Golang, for example [a Discord Webhook Client](https://github.com/DisgoOrg/disgohook), a [Discord API Wrapper](https://github.com/DisgoOrg/disgo), and much more!
