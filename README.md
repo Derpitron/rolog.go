@@ -1,5 +1,5 @@
 # RoLog.go
-Go program for Windows which takes the Roblox experiences you join and posts it's link to a discord Webhook
+RoLog is a program written in Golang for Windows which takes the Roblox experiences you join and posts its experience page to a Discord Webhook. Remember the games you've played before, or tell your community what you're playing right now!
 
 ![image](https://user-images.githubusercontent.com/46134462/127735187-d3c6ae1c-7e6d-44d6-bb55-e77a4ead7d1a.png)
 
@@ -33,6 +33,10 @@ go build -ldflags -H=windowsgui main.go
 ```  
 Either way, both will compile a file called `main.exe`. 
 
-You **must** keep the compiled `.exe` in the same folder as your `.env` file, otherwise the program will not run. If you need to move the `.exe` somewhere else, you may make a shortcut and move it, e,g to your `shell:startup` folder.  
+# Information
+  
+- You **must** keep the compiled `.exe` in the same folder as your `.env` file, otherwise the program will not run. If you need to move the `.exe` somewhere else, you may make a shortcut and move it, e,g to your `shell:startup` folder.  
 
-If you want to stop the program, close the console window. If you've compiled the program without the console window and want to stop it, open Task Manager, find the name of your `.exe` file and End Task.
+- If you want to stop the program, close the console window. If you've compiled the program without the console window and want to stop it, open Task Manager, find the name of your `.exe` file and End Task.
+
+- The program must be running in order to send the link! It must be running on the system in which you're playing the experience, so you cannot host it on a server or service like Heroku!
