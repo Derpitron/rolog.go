@@ -63,6 +63,6 @@ func UpdateRobloxPresence() {
 func main() {
 	for {
 		UpdateRobloxPresence()
-		time.Sleep(time.Second * 4)
+		time.Sleep(time.Second * 3)
 	}
 }
