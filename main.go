@@ -28,7 +28,7 @@ var (
 	reset   = false
 )
 
-func GetProcessByName(targetProcessName string) *process.Process {
+func getProcessByName(targetProcessName string) *process.Process {
 	processes, _ := process.Processes()
 	for _, proc := range processes {
 		name, _ := proc.Name()
@@ -39,10 +39,10 @@ func GetProcessByName(targetProcessName string) *process.Process {
 	return nil
 }
 
-func UpdateRobloxPresence() {
-	roblox := GetProcessByName("RobloxPlayerBeta.exe")
+func updateRoblox() {
+	roblox := getProcessByName("RobloxPlayerBeta.exe")
 	for roblox == nil {
-		roblox = GetProcessByName("RobloxPlayerBeta.exe")
+		roblox = getProcessByName("RobloxPlayerBeta.exe")
 		if !reset {
 			reset = true
 			fmt.Println("reset client activity")
@@ -62,7 +62,9 @@ func UpdateRobloxPresence() {
 
 func main() {
 	for {
-		UpdateRobloxPresence()
-		time.Sleep(time.Second * 3)
+		select {
+		case <-time.After(time.Second):
+			updateRoblox()
+		}
 	}
 }
