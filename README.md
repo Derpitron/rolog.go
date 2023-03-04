@@ -1,8 +1,9 @@
+## Program is unmaintained. This may or may not work, use at your own risk.
+
 # RoLog.go
 RoLog is a program written in Golang for Windows which takes the Roblox experiences you join and posts its experience page to a Discord Webhook. Remember the games you've played before, or tell your community what you're playing right now!
 
 ![image](https://user-images.githubusercontent.com/46134462/127735187-d3c6ae1c-7e6d-44d6-bb55-e77a4ead7d1a.png)
-
 
 # Installation
 1. Install [Golang](https://golang.org/dl/) for your system
